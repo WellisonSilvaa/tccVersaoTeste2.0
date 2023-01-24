@@ -1,0 +1,7 @@
+{
+  "name": "tccVersaoTeste",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
