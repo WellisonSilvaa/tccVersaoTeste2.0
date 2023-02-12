@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar align="center">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tutorial</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/nivel1']">{{ botao }}</ion-button>
+    </ion-buttons>
+  </ion-toolbar>  
+</ion-header>
+
+<ion-content>
+
+  <ion-slides pager="true" (ionSlideReachEnd)="mudar('')" (ionSlideDrag)="mudar('Pular')">
+
+    <ion-slide>
+      O HIRAGANA é um dos sistemas de escrita do Japão...
+    </ion-slide>
+    <ion-slide>
+      Contendo 46 ideogramas diferentes...
+    </ion-slide>
+    <ion-slide>
+      Cada um representa um som.
+    </ion-slide>
+    <ion-slide>
+      No Brasil, utilizamos o ROMAJI para simbolizar esses sons
+    </ion-slide>
+    <ion-slide>
+      Que é uma forma em português de pronunciá-los...
+    </ion-slide>
+    <ion-slide>
+      Por exemplo:
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <ion-button size="large">あ</ion-button>
+        <ion-label> = A</ion-label>
+      </div>          
+    </ion-slide>
+    <ion-slide>
+      <div>
+        Agora é sua vez! <br><br>
+        <ion-button size="large" [routerLink]="['/nivel1']">Começar!</ion-button>
+      </div>
+
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>

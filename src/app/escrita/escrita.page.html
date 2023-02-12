@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>    
+    <ion-title>Escrita</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+  
+    <ion-card button [routerLink]="['/hiragana']">
+      <ion-card-header>
+        <ion-card-title>HIRAGANA</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  
+    <ion-card disabled>
+      <ion-card-header>
+        <ion-card-title>KATAKANA</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  
+    <ion-card disabled>
+      <ion-card-header>
+        <ion-card-title>KANJI</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  
+  </ion-list>
+
+</ion-content>
