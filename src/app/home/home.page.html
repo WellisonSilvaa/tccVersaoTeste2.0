@@ -3,6 +3,9 @@
     <ion-item button (click)="presentActionSheet()">
       <ion-label>{{ usuario }}</ion-label>
       <ion-icon name="person" slot="start"></ion-icon>
+      <ion-buttons slot="end">
+        <ion-label>Nv. {{ nivel }}</ion-label>
+      </ion-buttons>
     </ion-item>
   </ion-toolbar>
 </ion-header>
@@ -11,7 +14,7 @@
 
   <ion-list>
 
-    <ion-card button [routerLink]="['/escrita']">
+    <ion-card class="principal animate__animated animate__pulse animate__infinite" button [routerLink]="['/escrita']">
       <ion-card-header>
         <ion-card-title>ESCRITA</ion-card-title>
       </ion-card-header>

@@ -9,6 +9,7 @@ import { ActionSheetController } from '@ionic/angular';
 export class HomePage {
 
   public usuario = "nomeUsuário";
+  public nivel = "1";
 
   constructor(private actionSheetCtrl: ActionSheetController) {}
 

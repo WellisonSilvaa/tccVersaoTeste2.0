@@ -33,13 +33,13 @@ export class Nivel1Page implements OnInit {
         {
           text: 'Voltar',
           handler: () => {
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('/hiragana');
           }          
         },
         {
           text: 'Próximo nível',
           handler: () => {
-            this.router.navigateByUrl('/hiragana');
+            this.router.navigateByUrl('/nivel1');
           }
         },
       ],
