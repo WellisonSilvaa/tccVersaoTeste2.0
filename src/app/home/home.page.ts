@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActionSheetController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomePage {
   public usuario = "nomeUsuário";
   public nivel = "1";
 
-  constructor(private actionSheetCtrl: ActionSheetController) {}
+  constructor(private actionSheetCtrl: ActionSheetController, private router: Router, private alertController: AlertController, private toastController: ToastController) {}
 
   ngOnInit() {
   }
@@ -21,15 +22,15 @@ export class HomePage {
       buttons: [
         {
           text: 'Desativar conta',
-          data: {
-            action: 'cancel',
+          handler: () => {
+            this.alert();
           },
         },
         {
           text: 'Alterar senha',
-          data: {
-            action: 'cancel',
-          },
+          handler: () => {
+              // Abrir component "Alert Text Inputs"
+            }
         }
       ],
     });
@@ -37,6 +38,35 @@ export class HomePage {
     await actionSheet.present();
 
     const result = await actionSheet.onDidDismiss();
+  }
+
+  async alert() {
+    const alert = await this.alertController.create({
+      header: 'Deseja desativar a sua conta?',
+      buttons: [
+        {
+          text: 'Voltar',
+          role: 'cancel',
+        },
+        {
+          text: 'Ok',
+          handler: () => {
+            this.router.navigateByUrl('/home'); // Pagina de Login
+          }
+        },
+      ],
+    });
+    await alert.present();
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Conta desativada com sucesso!',
+      duration: 1500,
+      position: 'bottom'
+    });
+
+    await toast.present();
   }
 
 }

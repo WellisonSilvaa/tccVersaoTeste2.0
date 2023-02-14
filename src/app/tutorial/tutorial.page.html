@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar align="center">
+  <!-- <ion-toolbar align="center">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -7,12 +7,17 @@
     <ion-buttons slot="end">
       <ion-button [routerLink]="['/nivel1']">{{ botao }}</ion-button>
     </ion-buttons>
-  </ion-toolbar>  
+  </ion-toolbar>   -->
 </ion-header>
 
 <ion-content>
-
-  <ion-slides pager="true" (ionSlideReachEnd)="mudar('')" (ionSlideDrag)="mudar('Pular')">
+  <ion-slides>
+    <ion-slide>
+      <ion-spinner></ion-spinner>
+    </ion-slide>
+  </ion-slides>
+  
+  <!-- <ion-slides pager="true" (ionSlideReachEnd)="mudar('')" (ionSlideDrag)="mudar('Pular')">
 
     <ion-slide>
       O HIRAGANA é um dos sistemas de escrita do Japão...
@@ -46,5 +51,5 @@
 
     </ion-slide>
 
-  </ion-slides>
+  </ion-slides> -->
 </ion-content>

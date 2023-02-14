@@ -17,7 +17,7 @@
   <div class="principal animate__animated animate__zoomIn">
     <div class="bloqueioDeClick2"></div>
     <label class="carta" for="flip">
-      <div class="frente animate__animated animate__pulse animate__infinite animate__slower">
+      <div class="frente animate__animated animate__pulse animate__infinite animate__slow">
         <h1>{{ front }}</h1>
       </div>
       <div class="verso">
@@ -33,14 +33,14 @@
   </div>
 
   <div class="teclado animate__animated animate__fadeInRight">
-    <div class="animate__animated animate__heartBeat animate__delay-5s">
+    <div>
       <ion-grid>
         <ion-col>
           <ion-row>
-            <ion-button (click)="responder('あ')">A</ion-button>
+            <ion-button class="animate__animated animate__heartBeat animate__delay-3s" (click)="responder('あ')">A</ion-button>
           </ion-row>
           <ion-row>
-            <ion-button (click)="responder('い')">I</ion-button>
+            <ion-button class="animate__animated animate__heartBeat animate__delay-5s" (click)="responder('い')">I</ion-button>
           </ion-row>
           <!-- <ion-row>
             <ion-button (click)="responder('う')">U</ion-button>
