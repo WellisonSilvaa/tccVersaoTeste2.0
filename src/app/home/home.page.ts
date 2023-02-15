@@ -1,5 +1,6 @@
+import { Api } from './../../service/api';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
 
 @Component({
@@ -9,12 +10,27 @@ import { ActionSheetController, AlertController, ToastController } from '@ionic/
 })
 export class HomePage {
 
-  public usuario = "nomeUsuário";
-  public nivel = "1";
+  usu_id: String = "";
+  usu_nome: String = "";
+  usu_nivel: String = "";
 
-  constructor(private actionSheetCtrl: ActionSheetController, private router: Router, private alertController: AlertController, private toastController: ToastController) {}
+  constructor(
+    private actionSheetCtrl: ActionSheetController,
+    private router: Router,
+    private alertController: AlertController,
+    private toastController: ToastController,
+    private actRouter: ActivatedRoute,
+    private provider: Api
+    ) {}
 
   ngOnInit() {
+    //ACT ROUTER SERVE PARA RECEBER E PASSAR PARAMETROS ENTRE AS PAGINAS
+    this.actRouter.params.subscribe((data: any)=>{
+      this.usu_id = data.usu_id;
+      this.usu_nome = data.usu_nome;
+      this.usu_nivel = data.usu_nivel;
+
+    })
   }
 
   async presentActionSheet() {
@@ -51,7 +67,7 @@ export class HomePage {
         {
           text: 'Ok',
           handler: () => {
-            this.router.navigateByUrl('/home'); // Pagina de Login
+            this.router.navigateByUrl('/login'); // Pagina de Login
           }
         },
       ],
