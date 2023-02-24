@@ -1,4 +1,5 @@
-import { Api } from './../../service/api';
+import { AuthService } from './../services/auth.service';
+import { signOut } from '@angular/fire/auth';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
@@ -15,27 +16,33 @@ export class HomePage {
   usu_nivel: String = "";
 
   constructor(
+    private authService: AuthService,
     private actionSheetCtrl: ActionSheetController,
     private router: Router,
     private alertController: AlertController,
     private toastController: ToastController,
-    private actRouter: ActivatedRoute,
-    private provider: Api
+    private actRouter: ActivatedRoute
     ) {}
 
   ngOnInit() {
-    //ACT ROUTER SERVE PARA RECEBER E PASSAR PARAMETROS ENTRE AS PAGINAS
-    this.actRouter.params.subscribe((data: any)=>{
-      this.usu_id = data.usu_id;
-      this.usu_nome = data.usu_nome;
-      this.usu_nivel = data.usu_nivel;
+    // //ACT ROUTER SERVE PARA RECEBER E PASSAR PARAMETROS ENTRE AS PAGINAS
+    // this.actRouter.params.subscribe((data: any)=>{
+    //   this.usu_id = data.usu_id;
+    //   this.usu_nome = data.usu_nome;
+    //   this.usu_nivel = data.usu_nivel;
 
-    })
+    // })
   }
 
   async presentActionSheet() {
     const actionSheet = await this.actionSheetCtrl.create({
       buttons: [
+        {
+          text: 'Sair',
+          handler: () => {
+            this.logout();
+          },
+        },
         {
           text: 'Desativar conta',
           handler: () => {
@@ -83,6 +90,11 @@ export class HomePage {
     });
 
     await toast.present();
+  }
+
+  async logout(){
+    await this.authService.logout();
+    this.router.navigateByUrl('/', {replaceUrl: true});
   }
 
 }

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "tccapk2": {
+      "hosting": {
+        "app": [
+          "tccapk2"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "tccapk2"
+  }
+}
