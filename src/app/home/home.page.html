@@ -1,8 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-item button (click)="presentActionSheet()">
-      <ion-label> Wellison</ion-label>
-      <ion-icon name="person" slot="start"></ion-icon>
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-img src="{{profileInfo.photoURL}}"></ion-img>
+        </ion-avatar>
+        <ion-label>{{profileInfo.email}}</ion-label>
+      </ion-item>
       <ion-buttons slot="end">
         <ion-label>Nv. 1</ion-label>
       </ion-buttons>
