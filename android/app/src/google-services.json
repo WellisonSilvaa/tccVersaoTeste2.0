@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "834203845263",
+    "project_id": "tccapk2",
+    "storage_bucket": "tccapk2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834203845263:android:2f02437fe03c28d5a466fa",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834203845263-vd7pbn73afh9odfno4ja5mfs4splsd9j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "c274b895d6e6c2bc0197469f2b11488560aaa767"
+          }
+        },
+        {
+          "client_id": "834203845263-b1s2v4vfn5mfhh4d76re5v6s1436j6mk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCphgEaknlS7IGbYEhpZQekyy9BC94UiDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834203845263-b1s2v4vfn5mfhh4d76re5v6s1436j6mk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

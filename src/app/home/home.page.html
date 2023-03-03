@@ -3,12 +3,12 @@
     <ion-item button (click)="presentActionSheet()">
       <ion-item>
         <ion-avatar slot="start">
-          <ion-img src="{{profileInfo.photoURL}}"></ion-img>
+          <ion-img src="{{profile.photoURL}}"></ion-img>
         </ion-avatar>
-        <ion-label>{{profileInfo.email}}</ion-label>
+        <ion-label>{{profile.email}}</ion-label>
       </ion-item>
       <ion-buttons slot="end">
-        <ion-label>Nv. 1</ion-label>
+        <ion-label>{{profile.nivel}}</ion-label>
       </ion-buttons>
     </ion-item>
   </ion-toolbar>

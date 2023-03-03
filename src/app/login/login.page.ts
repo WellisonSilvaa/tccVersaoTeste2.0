@@ -1,3 +1,4 @@
+import { Plugins } from '@capacitor/core/types/global';
 import { getAuth } from '@angular/fire/auth';
 import { DataService } from './../services/data.service';
 import { User, onAuthStateChanged } from '@firebase/auth';
@@ -6,6 +7,9 @@ import { LoadingController, ToastController, AlertController } from '@ionic/angu
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import '@codetrix-studio/capacitor-google-auth';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import firebase from 'firebase/compat/app';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +17,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
+  userInfo = null;
   usu_id: String = "";
   // usu_nome: String = "";
   // usu_nivel: String = "";
@@ -37,6 +41,7 @@ export class LoginPage implements OnInit {
     this.credentials = this.fb.group({
       email: ['',[ Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
+      nome: ['', [Validators.required]],
     })
     // this.getUserProfile();
   }
@@ -49,7 +54,26 @@ export class LoginPage implements OnInit {
     return this.credentials.get('password');
   }
 
-  //Login pelo Google ------------
+
+  //----- Login Google Android ------
+  async googleSignup() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+
+    const googleUser = await this.authService.googleSignup();
+    await loading.dismiss();
+
+    if(googleUser) {
+      console.log('user: ', googleUser);
+      // this.usu_id = user.user.uid;
+      // console.log(this.usu_id);
+      this.router.navigateByUrl('/home', { replaceUrl: true});
+    }else{
+      this.showAlert('Login falhou', 'Tente Novamente');
+    }
+  }
+
+  //Login pelo Google WEB------------
   async googleLoginWeb() {
     const loading = await this.loadingController.create();
     await loading.present();

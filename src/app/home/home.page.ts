@@ -18,6 +18,7 @@ export class HomePage {
   usu_nome: any;
   usu_nivel: String = "";
   profileInfo: any = {};
+  profile: any = {};
 
   constructor(
     private authService: AuthService,
@@ -38,7 +39,15 @@ export class HomePage {
     //   this.usu_nome = data.usu_nome;
     //   this.usu_nivel = data.usu_nivel;
 // })
-    this.getUserProfile();
+    // this.getUserProfile();
+    // this.authService.userLogin().subscribe((data) => {
+    //   this.profile = data;
+    //   console.log(this.profile);
+    // })
+    this.authService.getUserProfile().subscribe((data) => {
+        this.profile = data;
+        console.log(this.profile);
+      })
   }
 
   async presentActionSheet() {
