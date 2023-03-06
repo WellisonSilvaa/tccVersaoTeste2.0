@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,11 +10,19 @@ import { Router } from '@angular/router';
 export class HiraganaPage implements OnInit {
 
   niveis = ['/nivel1'];
+  profile: any = {};
 
-  constructor() {
+  constructor(
+    private authService: AuthService,
+  ) {
+
   }
 
   ngOnInit() {
+    this.authService.getUserProfile().subscribe((data) => {
+      this.profile = data;
+      // console.log(this.profile);
+    })
   }
 
 }

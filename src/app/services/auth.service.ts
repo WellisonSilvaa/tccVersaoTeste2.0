@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { Auth, signOut, user } from '@angular/fire/auth';import { docData, Firestore } from '@angular/fire/firestore';
 ;
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithRedirect, signInWithPopup, User, onAuthStateChanged, getAuth } from '@firebase/auth';
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, setDoc, updateDoc } from 'firebase/firestore';
 import '@codetrix-studio/capacitor-google-auth';
 import { Plugins } from '@capacitor/core';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
@@ -16,7 +16,11 @@ export class AuthService {
   userCreateId: any;
   userCreateEmail: any;
   userIdLogin: any;
+  nivel: any;
   userprofile: any = {};
+  profile: any = {};
+  userprofileAuth: any = {};
+
 
   constructor(
     private auth: Auth,
@@ -56,7 +60,8 @@ export class AuthService {
       const userDocRef = doc(this.firestore, `users/${userId}`);
       await setDoc(userDocRef, {
         email,
-        nivel
+        nivel,
+        name
       })
       } catch (error) {
 
@@ -131,4 +136,45 @@ export class AuthService {
 
 
     }
+
+
+
+
+    //----------- Método de Update do Nivel ---------------- //
+
+  //    async updateNivel(){
+
+  //     // const auth = getAuth();
+  //     // const user = auth.currentUser;
+
+  //     // this.userprofile = user;
+
+  //     // this.getUserProfile().subscribe((data) => {
+  //     //   this.profile = data;
+  //     //   this.nivel = this.profile.nivel;
+  //     //   console.log('profile', this.nivel);
+  //     // })
+  //     // this.userprofileAuth = this.userprofile;
+
+  //     // try {
+
+  //     //   var nivel = this.nivel;
+  //     //   // var nivel = nivel + 1;
+  //     //   console.log('Nivel', nivel);
+  //     //   const email = this.profile.email;
+  //     //   const name = this.profile.name;
+
+  //     //   const userDocRef = doc(this.firestore, `users/${this.userprofileAuth.uid}`);
+  //     //   await setDoc(userDocRef, {
+  //     //     nivel,
+  //     //     email,
+  //     //     name
+
+  //     //   })
+  //     //   } catch (error) {
+  //     //     console.log('Erro', 'Erro na atualizacao no nivel');
+  //     //   }
+
+
+  // }
 }

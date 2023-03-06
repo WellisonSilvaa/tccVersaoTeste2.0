@@ -46,7 +46,7 @@ export class HomePage {
     // })
     this.authService.getUserProfile().subscribe((data) => {
         this.profile = data;
-        console.log(this.profile);
+        // console.log(this.profile);
       })
   }
 

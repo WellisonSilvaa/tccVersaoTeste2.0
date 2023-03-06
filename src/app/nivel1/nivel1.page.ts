@@ -1,6 +1,10 @@
+import { Firestore } from '@angular/fire/firestore';
+import { setDoc, doc } from 'firebase/firestore';
+import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
+import { getAuth } from 'firebase/auth';
 
 @Component({
   selector: 'app-nivel1',
@@ -16,14 +20,29 @@ export class Nivel1Page implements OnInit {
   back = "";
   random = this.sortear();
   p: number;
+  profile: any = {};
+  profileAuth: any = {};
+  nivel: any;
+  id: any;
 
-  constructor(private toastController: ToastController, private alertController: AlertController, private router: Router) {
+  constructor(
+    private toastController: ToastController,
+    private alertController: AlertController,
+    private router: Router,
+    private authService: AuthService,
+    private firestore: Firestore
+    )
+    {
     this.front = this.hiraganaA[this.random];
     this.back = this.romaji[this.random];
     this.p = 0;
   }
 
   ngOnInit() {
+    this.authService.getUserProfile().subscribe((data) => {
+      this.profile = data;
+      // console.log(this.profile);
+    })
   }
 
   async concluir() {
@@ -34,12 +53,19 @@ export class Nivel1Page implements OnInit {
           text: 'Voltar',
           handler: () => {
             this.router.navigateByUrl('/nivel1');
-          }          
+          }
         },
         {
           text: 'Próximo nível',
           handler: () => {
             this.router.navigateByUrl('/tutorial');
+          }
+        },
+        {
+          text: 'Teste Nivel',
+          handler: () => {
+            // this.authService.updateNivel();
+            this.router.navigateByUrl('/hiragana');
           }
         },
       ],
@@ -64,6 +90,7 @@ export class Nivel1Page implements OnInit {
     if (this.p == 100) {
       setTimeout(() => {
         this.concluir();
+
         this.p = 0;
       }, 1500);
     } else if (this.p <= 0) {
@@ -91,6 +118,7 @@ export class Nivel1Page implements OnInit {
   verificar(r: string) {
     if (r == this.front) {
       this.progredir(10);
+      this.updateNivel();
       setTimeout(() => {
         this.presentToast('Correto!', 'success');
       }, 200);
@@ -121,5 +149,35 @@ export class Nivel1Page implements OnInit {
     }
     desativarCheckbox(checkbox);
   }
+
+   async updateNivel() {
+
+    const auth = getAuth();
+      const user = auth.currentUser;
+
+    this.nivel = this.profile.nivel;
+    this.profileAuth = user;
+
+      try {
+
+      var nivel = +(this.nivel);
+      nivel = nivel + 1;
+      console.log(nivel);
+      const email = this.profile.email;
+      const name = this.profile.name;
+
+      const userDocRef = doc(this.firestore, `users/${this.profileAuth.uid}`);
+      await setDoc(userDocRef, {
+        nivel,
+        email,
+        name
+
+      })
+      } catch (error) {
+        console.log('Erro', 'Erro na atualizacao no nivel');
+      }
+
+  }
+
 
 }
